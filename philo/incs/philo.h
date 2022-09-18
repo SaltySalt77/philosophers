@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:03:16 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 19:35:02 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 typedef enum e_info_idx
 {
-	NBR_OF_PHILOS = 1,
+	NBR_OF_PHILO = 1,
 	TIME_TO_DIE = 2,
 	TIME_TO_EAT = 3,
 	TIME_TO_SLEEP = 4,
@@ -62,4 +62,7 @@ t_philo_lst	*init_philo_lst(t_info	*info);
 t_info		*init_s_info(int ac, char	**av);
 int			check_alloc(void	*allocated);
 	// check if allocated is NULL and exit when it is NULL
+
+/* test directory */
+void		print_philo_infos(t_philo_lst	*head);
 #endif
