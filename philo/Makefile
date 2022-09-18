@@ -6,7 +6,7 @@
 #    By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 15:40:24 by hyna              #+#    #+#              #
-#    Updated: 2022/09/18 18:34:46 by hyna             ###   ########.fr        #
+#    Updated: 2022/09/18 19:02:07 by hyna             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INC_LINK = -I./incs
 SRCS_DIRS = utils\
 
 SRCS_NAME = main.c\
-			utils/init_s_info.c utils/check_alloc.c utils/ft_atoi.c utils/ft_isdigit.c\
+			utils/init_s_info.c utils/check_alloc.c utils/ft_atoi.c utils/ft_isdigit.c utils/init_philo_lst.c\
 			
 SRCS_PATH = ./srcs
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))

@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 18:37:49 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 19:04:40 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 int	main(int argc, char	**argv)
 {
-	t_info	*info;
+	t_info		*info;
+	t_philo_lst	*head;
+	t_philo_lst	*curr;
 
 	(void) argv;
 	if (argc < 5 || argc > 6)
 		return (1);
 	info = init_s_info(argc, argv);
-	// 철학자 구조체 생성
+	head = init_philo_lst(info);
+	curr = head;
 	// 스레드 생성
 	while (1)
 		sleep(100);
