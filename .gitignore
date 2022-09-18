@@ -1,2 +1,7 @@
 example/*
 example
+*.o
+*/*.o
+*.log
+*/*.log
+*/a.out
