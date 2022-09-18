@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:48:14 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 19:52:34 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	init_forks(t_info	*info)
 	i = 0;
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->p_args[NBR_OF_PHILO]);
 	check_alloc(info->forks);
-	while (i < info->p_args[NBR_OF_PHILO])
+	while (i <= info->p_args[NBR_OF_PHILO])
 	{
 		if (pthread_mutex_init(&(info->forks[i]), NULL) != 0)
 			exit(1);
