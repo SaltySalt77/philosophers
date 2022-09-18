@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:31:59 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 19:48:14 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,21 @@
 
 /* initializing sturct s_info */
 
-static void	init_p_args(int ac, char	**av, t_info	*info)
+static int	init_p_args(int ac, char	**av, t_info	*info)
 {
 	info->p_args[NBR_OF_PHILO] = ft_atoi(av[NBR_OF_PHILO]);
 	info->p_args[TIME_TO_DIE] = ft_atoi(av[TIME_TO_DIE]);
 	info->p_args[TIME_TO_EAT] = ft_atoi(av[TIME_TO_EAT]);
 	info->p_args[TIME_TO_SLEEP] = ft_atoi(av[TIME_TO_SLEEP]);
 	if (ac == 6)
+	{
 		info->p_args[MUST_EAT] = ft_atoi(av[MUST_EAT]);
+		if (info->p_args[MUST_EAT] < 0)
+			exit(1);
+	}
 	else
 		info->p_args[MUST_EAT] = -1;
+	return (0);
 }
 
 static pthread_t	*init_p_ids(int p_nbrs)

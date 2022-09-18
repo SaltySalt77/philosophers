@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:12:06 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:38:11 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 19:50:10 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	print_philo_infos(t_philo_lst	*head)
 		printf("philo's left fork      : [%d]\n", head->left_fork);
 		printf("philo's right fork     : [%d]\n", head->right_fork);
 		printf("philo's last meal time : [%d]\n", head->last_meal_time);
+		printf("philo have eaten       : [%d] times\n", head->eaten_time);
 		print_line();
 		head = head->next;
 	}

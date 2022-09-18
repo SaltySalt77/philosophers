@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:35:02 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 19:49:11 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_philo_lst
 	int					left_fork;
 	int					right_fork;
 	suseconds_t			last_meal_time;
+	int					eaten_time;
 	struct s_info		*info;
 	struct s_philo_lst	*next;
 }	t_philo_lst;

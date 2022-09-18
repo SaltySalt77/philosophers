@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_alloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:45:03 by hyna             ###   ########.fr       */
+/*   Created: 2022/09/18 17:33:35 by hyna              #+#    #+#             */
+/*   Updated: 2022/09/18 17:33:36 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char	**argv)
+int	check_alloc(void	*allocated)
 {
-	t_info		*info;
-	t_philo_lst	*head;
-	t_philo_lst	*curr;
-
-	(void) argv;
-	if (argc < 5 || argc > 6)
-		return (1);
-	info = init_s_info(argc, argv);
-	head = init_philo_lst(info);
-	curr = head;
-	//testcode
-	print_philo_infos(head);
-	// 스레드 생성
-	while (1)
-		sleep(100);
-	return (0);
+	if (allocated == NULL)
+		exit(1);
+	else
+		return (0);
 }
