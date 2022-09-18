@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_utils.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 18:37:49 by hyna             ###   ########.fr       */
+/*   Created: 2022/09/18 17:43:55 by hyna              #+#    #+#             */
+/*   Updated: 2022/09/18 18:34:51 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef PHILO_UTILS_H
+# define PHILO_UTILS_H
 
-int	main(int argc, char	**argv)
-{
-	t_info	*info;
+int	ft_isdigit(int c);
+int	ft_atoi(const char	*nptr);
 
-	(void) argv;
-	if (argc < 5 || argc > 6)
-		return (1);
-	info = init_s_info(argc, argv);
-	// 철학자 구조체 생성
-	// 스레드 생성
-	while (1)
-		sleep(100);
-	return (0);
-}
+#endif

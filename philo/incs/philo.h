@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 16:37:34 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 18:39:43 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <string.h>
+
+// for libft_functions
+# include "philo_utils.h"
 
 typedef enum e_infos
 {
@@ -36,20 +40,24 @@ typedef enum e_fork_status
 
 typedef struct s_info
 {
-	int				p_count;
+	int				*p_args;
 	pthread_t		*p_ids;
 	pthread_mutex_t	*forks;
 	int				*forks_status;
 	suseconds_t		std_time;
 }	t_info;
 
-typedef struct s_philos
+typedef struct s_philo_info
 {
 	int				nbr;
 	int				left_fork;
 	int				right_fork;
 	suseconds_t		last_meal_time;
 	struct s_info	*info;
-}	t_philos;
+}	t_philo_info;
 
+/* utils directory */
+t_info	*init_s_info(int ac, char	**av);
+int		check_alloc(void	*allocated);
+	// check if allocated is NULL and exit when it is NULL
 #endif
