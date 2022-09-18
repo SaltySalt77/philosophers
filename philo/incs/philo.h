@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 20:33:27 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 21:12:27 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct s_info
 	int				*p_args;
 	pthread_t		*p_ids;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	print;
 	int				*forks_status;
 	suseconds_t		std_time;
 }	t_info;
@@ -65,6 +66,9 @@ typedef struct s_philo_lst
 	struct s_info		*info;
 	struct s_philo_lst	*next;
 }	t_philo_lst;
+
+/* root directory */
+void		*philo_routine(void	*value);
 
 /* utils directory */
 t_philo_lst	*init_philo_lst(t_info	*info);

@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:52:34 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 21:02:45 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static int	init_forks(t_info	*info)
 	check_alloc(info->forks_status);
 	memset(info->forks_status, 0,
 		sizeof(int) * (info->p_args[NBR_OF_PHILO] + 1));
+	if (pthread_mutex_init(&(info->print), NULL) != 0)
+		exit(1);
 	return (0);
 }
 
