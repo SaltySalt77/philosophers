@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:42:58 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 21:29:15 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 21:30:58 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	wait_stdtime(t_info	*info)
 			break ;
 	}
 }
-// 시간 순 대로 프린트하도록 뮤텍스 락을 걸면 너무 시간이 지연됨.
-// 뮤텍스 락을 걸지 않을 경우 시간순대로 나오지 않음
 
 void	*philo_routine(void	*value)
 {
@@ -34,11 +32,9 @@ void	*philo_routine(void	*value)
 	wait_stdtime(philo->info);
 	while (1)
 	{
-		// pthread_mutex_lock(&(philo->info->print));
 		gettimeofday(&time, NULL);
 		printf("[%d] Started philo[%d]\n",
 			(time.tv_usec - philo->info->std_time), philo->name);
-		// pthread_mutex_unlock(&(philo->info->print));
 		break ;
 		//take_fork()
 		//think()
