@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:49:11 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 20:33:27 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ typedef enum e_fork_status
 	TAKEN = 1
 }	t_fork_status;
 
+typedef enum e_last_act
+{
+	EATING = 1,
+	SLEEPING= 2,
+	THINKING = 3
+}	t_last_act;
+
 typedef struct s_info
 {
 	int				*p_args;
@@ -54,6 +61,7 @@ typedef struct s_philo_lst
 	int					right_fork;
 	suseconds_t			last_meal_time;
 	int					eaten_time;
+	int					last_act;
 	struct s_info		*info;
 	struct s_philo_lst	*next;
 }	t_philo_lst;

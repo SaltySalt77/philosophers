@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:45:03 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/18 20:38:17 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	main(int argc, char	**argv)
 	info = init_s_info(argc, argv);
 	head = init_philo_lst(info);
 	curr = head;
-	//testcode
-	print_philo_infos(head);
+	print_philo_infos(head);	//testcode
 	// 스레드 생성
 	while (1)
 		sleep(100);
