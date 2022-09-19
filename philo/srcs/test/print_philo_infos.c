@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_philo_infos.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: salt <salt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:12:06 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 19:50:10 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/19 20:45:16 by salt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	print_philo_infos(t_philo_lst	*head)
 		printf("philo name             : [%d]\n", head->name);
 		printf("philo's left fork      : [%d]\n", head->left_fork);
 		printf("philo's right fork     : [%d]\n", head->right_fork);
-		printf("philo's last meal time : [%d]\n", head->last_meal_time);
+		printf("philo's last meal time : [%ld]\n", head->last_meal_time);
 		printf("philo have eaten       : [%d] times\n", head->eaten_time);
 		print_line();
 		head = head->next;

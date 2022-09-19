@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: salt <salt@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:42:58 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 21:30:58 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/19 20:55:05 by salt             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,16 @@ static void	wait_stdtime(t_info	*info)
 	{
 		if (info->std_time != -1)
 			break ;
+		usleep(10);
 	}
+}
+
+static int	get_timestamp(suseconds_t std_time, suseconds_t	cur_time)
+{
+	int	timestamp;
+
+	timestamp = (cur_time - std_time) / 1000;
+	return (timestamp);
 }
 
 void	*philo_routine(void	*value)
@@ -32,9 +41,11 @@ void	*philo_routine(void	*value)
 	wait_stdtime(philo->info);
 	while (1)
 	{
+		//pthread_mutex_lock(&(philo->info->print));
 		gettimeofday(&time, NULL);
-		printf("[%d] Started philo[%d]\n",
-			(time.tv_usec - philo->info->std_time), philo->name);
+		printf(START_MSG,
+			get_timestamp(philo->info->std_time, time.tv_usec), philo->name);
+		//pthread_mutex_unlock(&(philo->info->print));
 		break ;
 		//take_fork()
 		//think()
