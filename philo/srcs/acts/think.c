@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_routine.c                                    :+:      :+:    :+:   */
+/*   think.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 20:42:58 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 19:07:35 by hyna             ###   ########.fr       */
+/*   Created: 2022/09/19 19:04:11 by hyna              #+#    #+#             */
+/*   Updated: 2022/09/19 19:06:23 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	wait_stdtime(t_info	*info)
+void	think(t_philo_lst	*philo)
 {
-	while (1)
-	{
-		if (info->std_time->tv_usec != -1)
-			break ;
-		usleep(10);
-	}
-}
-
-void	*philo_routine(void	*value)
-{
-	struct s_philo_lst	*philo;
-
-	philo = (struct s_philo_lst *)value;
-	wait_stdtime(philo->info);
-	while (1)
-	{
-		take_fork(philo, philo->info->forks);
-		eat_spaghetti(philo, philo->info->forks);
-		go_asleep(philo);
-		think(philo);
-	}
+	print_status(philo, THINKING_MSG);
 }

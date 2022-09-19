@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 18:27:07 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/19 19:07:05 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define TAKEN_FORK_MSG "%dms %d has taken a fork\n"
 # define EATING_MSG "%dms %d is eating\n"
 # define SLEEPING_MSG "%dms %d is sleeping\n"
+# define THINKING_MSG "%dms %d is thinking\n"
 # define DEAD_MSG "%dms %d died\n"
 
 typedef enum e_info_idx
@@ -83,7 +84,9 @@ void		*philo_routine(void	*value);
 
 /* act directory */
 void		eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks);
+void		go_asleep(t_philo_lst	*philo);
 void		take_fork(t_philo_lst	*philo, pthread_mutex_t	*forks);
+void		think(t_philo_lst	*philo);
 void		print_status(t_philo_lst	*philo, char	*msg);
 	//prints status of philo in format msg
 
