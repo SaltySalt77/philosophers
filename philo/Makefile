@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+         #
+#    By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 15:40:24 by hyna              #+#    #+#              #
-#    Updated: 2022/09/18 21:16:46 by hyna             ###   ########.fr        #
+#    Updated: 2022/09/19 16:25:34 by hyna             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,14 @@ NAME = philo
 CC = cc
 CCFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=address
 INC_LINK = -I./incs
-SRCS_DIRS = utils\
+SRCS_DIRS = acts\
+			utils\
 			test\
 
 SRCS_NAME = main.c philo_routine.c\
-			utils/init_s_info.c utils/check_alloc.c utils/ft_atoi.c utils/ft_isdigit.c utils/init_philo_lst.c\
+			acts/take_fork.c acts/eat_spaghetti.c acts/print_status.c\
+			utils/init_s_info.c utils/check_alloc.c utils/ft_atoi.c\
+			utils/ft_isdigit.c utils/init_philo_lst.c utils/get_timestamp.c\
 			test/print_philo_infos.c\
 			
 SRCS_PATH = ./srcs

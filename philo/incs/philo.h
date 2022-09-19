@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salt <salt@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 20:51:34 by salt             ###   ########.fr       */
+/*   Updated: 2022/09/19 16:26:24 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,14 @@
 // for libft_functions
 # include "philo_utils.h"
 
+//test msg define need to rm before eval
 # define START_MSG "[%d] Started philo[%d]\n"
+
+//mecros for printing state change
+# define TAKEN_FORK_MSG "%dms %d has taken a fork\n"
+# define EATING_MSG "%dms %d is eating\n"
+# define SLEEPING_MSG "%dms %d is sleeping\n"
+# define DEAD_MSG "%dms %d died\n"
 
 typedef enum e_info_idx
 {
@@ -34,12 +41,14 @@ typedef enum e_info_idx
 	MUST_EAT = 5
 }	t_info_idx;
 
+// maybe it'll be needed to remove
 typedef enum e_fork_status
 {
 	UNTAKEN = 0,
 	TAKEN = 1
 }	t_fork_status;
 
+// maybe it'll be needed to remove
 typedef enum e_last_act
 {
 	EATING = 1,
@@ -72,10 +81,17 @@ typedef struct s_philo_lst
 /* root directory */
 void		*philo_routine(void	*value);
 
+/* act directory */
+void		eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks);
+void		take_fork(t_philo_lst	*philo, pthread_mutex_t	*forks);
+void		print_status(t_philo_lst	*philo, char	*msg);
+	//prints status of philo in format msg
+
 /* utils directory */
 t_philo_lst	*init_philo_lst(t_info	*info);
 t_info		*init_s_info(int ac, char	**av);
 int			check_alloc(void	*allocated);
+int			get_timestamp(suseconds_t std_time, suseconds_t cur_time);
 	// check if allocated is NULL and exit when it is NULL
 
 /* test directory */

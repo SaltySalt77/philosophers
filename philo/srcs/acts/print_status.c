@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.h                                      :+:      :+:    :+:   */
+/*   print_status.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 17:43:55 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 15:45:57 by hyna             ###   ########.fr       */
+/*   Created: 2022/09/19 15:47:21 by hyna              #+#    #+#             */
+/*   Updated: 2022/09/19 16:05:10 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_UTILS_H
-# define PHILO_UTILS_H
+#include "philo.h"
 
-int	ft_isdigit(int c);
-int	ft_atoi(const char	*nptr);
+void	print_status(t_philo_lst	*philo, char	*msg)
+{
+	struct timeval		time;
 
-#endif
+	pthread_mutex_lock(&(philo->info->print));
+	gettimeofday(&time, NULL);
+	printf(msg,
+		get_timestamp(philo->info->std_time, time.tv_usec), philo->name);
+	pthread_mutex_unlock(&(philo->info->print));
+}

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_allocs.c                                     :+:      :+:    :+:   */
+/*   get_timestamp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 17:33:35 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 20:39:09 by hyna             ###   ########.fr       */
+/*   Created: 2022/09/19 15:46:09 by hyna              #+#    #+#             */
+/*   Updated: 2022/09/19 15:46:10 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	check_alloc(void	*allocated)
+int	get_timestamp(suseconds_t std_time, suseconds_t	cur_time)
 {
-	if (allocated == NULL)
-		exit(1);
-	else
-		return (0);
+	int	timestamp;
+
+	timestamp = (cur_time - std_time) / 999;
+	return (timestamp);
 }
