@@ -6,16 +6,17 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:46:09 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 18:09:38 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/19 18:26:30 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	get_timestamp(suseconds_t std_time, suseconds_t	cur_time)
+int	get_timestamp(struct timeval *std_time, struct timeval *cur_time)
 {
-	int	timestamp;
+	double	timestamp;
 
-	timestamp = (cur_time - std_time) / 1000;
-	return (timestamp);
+	timestamp = (cur_time->tv_sec - std_time->tv_sec)
+		+ ((cur_time->tv_usec - std_time->tv_usec) / 1000);
+	return ((int) timestamp);
 }

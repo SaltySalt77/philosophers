@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_s_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 21:02:45 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/19 18:28:12 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ t_info	*init_s_info(int ac, char	**av)
 	init_p_args(ac, av, info);
 	info->p_ids = init_p_ids(info->p_args[NBR_OF_PHILO]);
 	init_forks(info);
-	info->std_time = -1;
+	info->std_time = malloc(sizeof(struct timeval));
+	check_alloc(info);
+	info->std_time->tv_usec = -1;
 	return (info);
 }

@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 16:26:24 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/19 18:27:07 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,12 @@ typedef enum e_last_act
 
 typedef struct s_info
 {
-	int				*p_args;
-	pthread_t		*p_ids;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	print;
-	int				*forks_status;
-	suseconds_t		std_time;
+	int					*p_args;
+	pthread_t			*p_ids;
+	pthread_mutex_t		*forks;
+	pthread_mutex_t		print;
+	int					*forks_status;
+	struct timeval		*std_time;
 }	t_info;
 
 typedef struct s_philo_lst
@@ -71,7 +71,7 @@ typedef struct s_philo_lst
 	int					name;
 	int					left_fork;
 	int					right_fork;
-	suseconds_t			last_meal_time;
+	struct timeval		*last_meal_time;
 	int					eaten_time;
 	int					last_act;
 	struct s_info		*info;
@@ -91,8 +91,9 @@ void		print_status(t_philo_lst	*philo, char	*msg);
 t_philo_lst	*init_philo_lst(t_info	*info);
 t_info		*init_s_info(int ac, char	**av);
 int			check_alloc(void	*allocated);
-int			get_timestamp(suseconds_t std_time, suseconds_t cur_time);
 	// check if allocated is NULL and exit when it is NULL
+int			get_timestamp(struct timeval *std_time,
+				struct timeval *cur_time);
 
 /* test directory */
 void		print_philo_infos(t_philo_lst	*head);

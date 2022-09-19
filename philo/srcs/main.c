@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 21:19:33 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/19 18:20:57 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char	**argv)
 	t_info			*info;
 	t_philo_lst		*head;
 	t_philo_lst		*curr;
-	struct timeval	time;
 	int				i;
 
 	(void) argv;
@@ -35,8 +34,7 @@ int	main(int argc, char	**argv)
 			exit(1);
 		curr = curr->next;
 	}
-	gettimeofday(&time, NULL);
-	info->std_time = time.tv_usec;
+	gettimeofday(info->std_time, NULL);
 	while (1)
 		sleep(100);
 	return (0);

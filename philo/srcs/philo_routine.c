@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:42:58 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 16:26:33 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/19 18:33:30 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	wait_stdtime(t_info	*info)
 {
 	while (1)
 	{
-		if (info->std_time != -1)
+		if (info->std_time->tv_usec != -1)
 			break ;
 		usleep(10);
 	}
@@ -32,6 +32,7 @@ void	*philo_routine(void	*value)
 	{
 		take_fork(philo, philo->info->forks);
 		eat_spaghetti(philo, philo->info->forks);
+		break ;
 		//sleep()
 		//think()
 	}
