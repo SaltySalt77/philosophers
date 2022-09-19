@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:19 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 16:44:35 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/19 18:07:33 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks)
 	int	i;
 
 	i = 0;
-	repeat_times = philo->info->p_args[TIME_TO_EAT];
+	repeat_times = philo->info->p_args[TIME_TO_EAT] * 10;
 	print_status(philo, EATING_MSG);
 	while (i < repeat_times)
 	{
-		usleep(1000);
+		usleep(100);
 		i++;
 	}
 	pthread_mutex_unlock(&(forks[philo->left_fork]));
