@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_status.c                                     :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 15:47:21 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/22 10:48:44 by hyna             ###   ########.fr       */
+/*   Created: 2022/09/22 10:35:25 by hyna              #+#    #+#             */
+/*   Updated: 2022/09/22 10:44:08 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_utils.h"
 
-void	print_status(t_philo_lst	*philo, char	*msg)
+int	ft_strncmp(const char	*s1, const char	*s2, size_t	n)
 {
-	struct timeval		time;
+	size_t	i;
 
-	pthread_mutex_lock(&(philo->info->print));
-	gettimeofday(&time, NULL);
-	printf(msg,
-		get_timestamp(philo->info->std_time, &time), philo->name);
-	if (msg[8] == DEAD_MSG[8])
-		exit(0);
-	pthread_mutex_unlock(&(philo->info->print));
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] && s2[i] && (i + 1 < n))
+	{
+		if (s1[i] != s2[i])
+			break ;
+		i++;
+	}
+	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
 }

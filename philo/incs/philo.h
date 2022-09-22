@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/22 09:25:10 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/22 12:04:07 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,15 @@ typedef struct s_philo_lst
 	int					eaten_time;
 	int					last_act;
 	struct s_info		*info;
+	struct s_philo_lst	*head;
 	struct s_philo_lst	*next;
 }	t_philo_lst;
 
 /* root directory */
+void		*check_death(void	*value);
+void		*check_eaten_time(void	*value);
 void		*philo_routine(void	*value);
+void		wait_stdtime(t_info	*info);
 
 /* act directory */
 void		eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks);

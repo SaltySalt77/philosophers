@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_philo_lst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:02:35 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/18 20:34:06 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/22 12:07:30 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	cross_hands(t_philo_lst	*node)
 	node->right_fork = tmp;
 }
 
-static t_philo_lst	*add_new_node(t_info *info, int p_nbr)
+static t_philo_lst	*add_new_node(t_info *info, int p_nbr, t_philo_lst	*head)
 {
 	t_philo_lst	*node;
 
@@ -32,10 +32,12 @@ static t_philo_lst	*add_new_node(t_info *info, int p_nbr)
 	node->right_fork = p_nbr;
 	if (node->left_fork == 0)
 		node->left_fork = info->p_args[NBR_OF_PHILO];
-	node->last_meal_time = 0;
+	node->last_meal_time = malloc(sizeof(struct timeval));
+	check_alloc(node->last_meal_time);
 	node->eaten_time = 0;
 	node->last_act = 0;
 	node->info = info;
+	node->head = head;
 	node->next = NULL;
 	if (p_nbr % 2 != 0)
 		cross_hands(node);
@@ -49,12 +51,13 @@ t_philo_lst	*init_philo_lst(t_info	*info)
 	int				p_nbr;
 
 	p_nbr = 1;
-	head = add_new_node(info, p_nbr);
+	head = add_new_node(info, p_nbr, NULL);
+	head->head = head;
 	p_nbr++;
 	curr = head;
 	while (p_nbr <= info->p_args[NBR_OF_PHILO])
 	{
-		curr->next = add_new_node(info, p_nbr++);
+		curr->next = add_new_node(info, p_nbr++, head);
 		curr = curr->next;
 	}
 	return (head);

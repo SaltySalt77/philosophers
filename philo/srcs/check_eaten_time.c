@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_status.c                                     :+:      :+:    :+:   */
+/*   check_eaten_time.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 15:47:21 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/22 10:48:44 by hyna             ###   ########.fr       */
+/*   Created: 2022/09/22 11:12:54 by hyna              #+#    #+#             */
+/*   Updated: 2022/09/22 11:19:26 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_status(t_philo_lst	*philo, char	*msg)
+void	*check_eaten_time(void	*value)
 {
-	struct timeval		time;
+	t_philo_lst		*philo;
+	t_philo_lst		*curr;
+	int				min_time;
 
-	pthread_mutex_lock(&(philo->info->print));
-	gettimeofday(&time, NULL);
-	printf(msg,
-		get_timestamp(philo->info->std_time, &time), philo->name);
-	if (msg[8] == DEAD_MSG[8])
-		exit(0);
-	pthread_mutex_unlock(&(philo->info->print));
+	philo = (t_philo_lst *) value;
+	wait_stdtime(philo->info);
+	while (1)
+	{
+		curr = philo;
+		min_time = philo->info->p_args[MUST_EAT];
+		while (curr)
+		{
+			if (curr->eaten_time < min_time)
+				min_time = curr->eaten_time;
+			curr = curr->next;
+		}
+		if (min_time == philo->info->p_args[MUST_EAT])
+			exit(0);
+		usleep(100);
+	}
 }

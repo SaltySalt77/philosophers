@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 18:20:57 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/22 11:53:17 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char	**argv)
 	t_info			*info;
 	t_philo_lst		*head;
 	t_philo_lst		*curr;
+	pthread_t		monitor;	
 	int				i;
 
 	(void) argv;
@@ -34,6 +35,9 @@ int	main(int argc, char	**argv)
 			exit(1);
 		curr = curr->next;
 	}
+	if (info->p_args[MUST_EAT] != -1)
+		pthread_create(&monitor, NULL, &check_eaten_time, head);
+	info->std_time = malloc(sizeof(struct timeval));
 	gettimeofday(info->std_time, NULL);
 	while (1)
 		sleep(100);

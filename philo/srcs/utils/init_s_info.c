@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/22 09:25:06 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/22 11:51:52 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ static int	init_forks(t_info	*info)
 	int	i;
 
 	i = 0;
-	info->forks = malloc(sizeof(pthread_mutex_t) * info->p_args[NBR_OF_PHILO]);
+	info->forks = malloc(sizeof(pthread_mutex_t)
+			* (info->p_args[NBR_OF_PHILO] + 1));
 	check_alloc(info->forks);
 	while (i <= info->p_args[NBR_OF_PHILO])
 	{
@@ -70,8 +71,6 @@ t_info	*init_s_info(int ac, char	**av)
 	init_p_args(ac, av, info);
 	info->p_ids = init_p_ids(info->p_args[NBR_OF_PHILO]);
 	init_forks(info);
-	info->std_time = malloc(sizeof(struct timeval));
-	check_alloc(info);
-	info->std_time->tv_usec = -1;
+	info->std_time = NULL;
 	return (info);
 }

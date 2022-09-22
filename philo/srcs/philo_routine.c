@@ -6,17 +6,17 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:42:58 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/22 09:26:57 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/22 11:54:47 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	wait_stdtime(t_info	*info)
+void	wait_stdtime(t_info	*info)
 {
 	while (1)
 	{
-		if (info->std_time->tv_usec != -1)
+		if (info->std_time)
 			break ;
 		usleep(10);
 	}
@@ -25,8 +25,11 @@ static void	wait_stdtime(t_info	*info)
 void	*philo_routine(void	*value)
 {
 	struct s_philo_lst	*philo;
+	pthread_t			monitor;
 
 	philo = (struct s_philo_lst *)value;
+	if (pthread_create(&monitor, NULL, &check_death, value) != 0)
+		exit(1);
 	wait_stdtime(philo->info);
 	while (1)
 	{
@@ -35,4 +38,5 @@ void	*philo_routine(void	*value)
 		go_asleep(philo);
 		think(philo);
 	}
+	return (0);
 }
