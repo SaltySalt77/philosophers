@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:12:06 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/19 18:29:19 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/22 09:24:56 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ static void	print_info(t_info	*info)
 	{
 		if (info->p_ids[i] != 0)
 			printf("error in p_ids[i]\n");
-		else if (info->forks_status[i] != 0)
-			printf("error in forks_status[i]\n");
 		// else if (info->std_time != -1)
 		// 	printf("error ! ! ! ! \n");
 	}
