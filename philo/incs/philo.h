@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/22 12:04:07 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/23 18:33:46:29 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ typedef enum e_info_idx
 	MUST_EAT = 5
 }	t_info_idx;
 
-// maybe it'll be needed to remove
-typedef enum e_fork_status
+typedef enum e_philo_status
 {
-	UNTAKEN = 0,
-	TAKEN = 1
-}	t_fork_status;
+	NOTHING = 0,
+	IS_DEAD = 1,
+	EATEN_ALL = 2
+}	t_philo_status;
 
 // maybe it'll be needed to remove
 typedef enum e_last_act
@@ -63,6 +63,7 @@ typedef struct s_info
 	pthread_t			*p_ids;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		print;
+	int					flag;
 	struct timeval		*std_time;
 }	t_info;
 
@@ -86,18 +87,18 @@ void		*philo_routine(void	*value);
 void		wait_stdtime(t_info	*info);
 
 /* act directory */
-void		eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks);
-void		go_asleep(t_philo_lst	*philo);
-void		take_fork(t_philo_lst	*philo, pthread_mutex_t	*forks);
-void		think(t_philo_lst	*philo);
-void		print_status(t_philo_lst	*philo, char	*msg);
+int			eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks);
+int			go_asleep(t_philo_lst	*philo);
+int			take_fork(t_philo_lst	*philo, pthread_mutex_t	*forks);
+int			think(t_philo_lst	*philo);
+int			print_status(t_philo_lst	*philo, char	*msg);
 	//prints status of philo in format msg
 
 /* utils directory */
 t_philo_lst	*init_philo_lst(t_info	*info);
 t_info		*init_s_info(int ac, char	**av);
-int			check_alloc(void	*allocated);
-	// check if allocated is NULL and exit when it is NULL
+t_info		*free_info(t_info	*info);
+int			free_and_exit(t_philo_lst	*philo);
 int			get_timestamp(struct timeval *std_time,
 				struct timeval *cur_time);
 

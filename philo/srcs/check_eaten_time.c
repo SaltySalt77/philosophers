@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:12:54 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/22 11:19:26 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/23 19:06:53 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void	*check_eaten_time(void	*value)
 			curr = curr->next;
 		}
 		if (min_time == philo->info->p_args[MUST_EAT])
-			exit(0);
+			break ;
 		usleep(100);
 	}
+	philo->info->flag = EATEN_ALL;
+	return (0);
 }
