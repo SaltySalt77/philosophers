@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:47:21 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 18:44:52 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/23 22:16:23 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	print_status(t_philo_lst	*philo, char	*msg)
 	struct timeval		time;
 
 	pthread_mutex_lock(&(philo->info->print));
-	if (philo->info->flag != IS_DEAD && philo->info->flag != EATEN_ALL)
+	if (philo->info->flag == NOTHING)
 	{
 		gettimeofday(&time, NULL);
 		printf(msg,

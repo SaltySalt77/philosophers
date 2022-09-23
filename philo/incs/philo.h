@@ -98,7 +98,7 @@ int			print_status(t_philo_lst	*philo, char	*msg);
 t_philo_lst	*init_philo_lst(t_info	*info);
 t_info		*init_s_info(int ac, char	**av);
 t_info		*free_info(t_info	*info);
-int			free_and_exit(t_philo_lst	*philo);
+int			free_philo(t_philo_lst	*philo);
 int			get_timestamp(struct timeval *std_time,
 				struct timeval *cur_time);
 

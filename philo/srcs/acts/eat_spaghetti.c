@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:19 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 19:43:59 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/23 22:16:07 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks)
 	{
 		gettimeofday(&curr, NULL);
 		if (philo->info->flag != NOTHING)
-			return (1);
+			break ;
 		else if (get_timestamp(philo->last_meal_time, &curr)
 			>= philo->info->p_args[TIME_TO_EAT])
 			break ;
