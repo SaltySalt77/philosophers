@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:04:11 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 18:57:22 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 21:21:41 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@ int	think(t_philo_lst	*philo)
 {
 	if (print_status(philo, THINKING_MSG))
 		return (1);
+	usleep(200);
 	return (0);
 }

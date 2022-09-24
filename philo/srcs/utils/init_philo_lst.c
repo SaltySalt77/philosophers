@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:02:35 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 18:18:40 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 21:07:29 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ static t_philo_lst	*add_new_node(t_info *info, int p_nbr, t_philo_lst	*head)
 	node->info = info;
 	node->head = head;
 	node->next = NULL;
-	if (p_nbr % 2 != 0)
+	// if (node->name % 2 != 0)
+	// 	cross_hands(node);
+	if (node->name == info->p_args[NBR_OF_PHILO])
 		cross_hands(node);
 	return (node);
 }

@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:42:58 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 20:15:49 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 21:13:24 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	*philo_routine(void	*value)
 		return ((void *) 1);
 	wait_stdtime(philo->info);
 	if (philo->name % 2 == 0)
-		usleep(100);
-	if (philo->name == philo->info->p_args[NBR_OF_PHILO])
 		usleep(100);
 	while (1)
 	{
