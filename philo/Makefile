@@ -6,17 +6,16 @@
 #    By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 15:40:24 by hyna              #+#    #+#              #
-#    Updated: 2022/09/24 18:18:47 by hyna             ###   ########.fr        #
+#    Updated: 2022/09/24 19:33:31 by hyna             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CCFLAGS = -Wall -Werror -Wextra -g3 -fsanitize=thread
+CCFLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address
 INC_LINK = -I./incs
 SRCS_DIRS = acts\
 			utils\
-			test\
 
 SRCS_NAME = main.c philo_routine.c check_death.c check_eaten_time.c\
 			acts/take_fork.c acts/eat_spaghetti.c acts/go_asleep.c acts/think.c\
@@ -24,7 +23,6 @@ SRCS_NAME = main.c philo_routine.c check_death.c check_eaten_time.c\
 			utils/init_s_info.c utils/ft_atoi.c utils/ft_strncmp.c\
 			utils/ft_strlen.c utils/free_philo.c\
 			utils/ft_isdigit.c utils/init_philo_lst.c utils/get_timestamp.c\
-			test/print_philo_infos.c\
 			
 SRCS_PATH = ./srcs
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))

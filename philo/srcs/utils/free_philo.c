@@ -6,22 +6,17 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:08:23 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 18:14:40 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 19:29:31 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	free_philo(t_philo_lst	*philo)
+static void	destroy_mutexes(t_info	*info)
 {
-	t_philo_lst		*head;
-	t_philo_lst		*tmp;
-	t_info			*info;
-	int				i;
+	int	i;
 
 	i = 1;
-	head = philo->head;
-	info = philo->info;
 	while (i <= info->p_args[NBR_OF_PHILO])
 		pthread_mutex_destroy(&(info->forks[i++]));
 	i = 1;
@@ -30,6 +25,17 @@ int	free_philo(t_philo_lst	*philo)
 	pthread_mutex_destroy(&(info->print));
 	pthread_mutex_destroy(&(info->start));
 	pthread_mutex_destroy(&(info->status));
+}
+
+int	free_philo(t_philo_lst	*philo)
+{
+	t_philo_lst		*head;
+	t_philo_lst		*tmp;
+	t_info			*info;
+
+	head = philo->head;
+	info = philo->info;
+	destroy_mutexes(info);
 	free(info->std_time);
 	free_info(info);
 	while (head)

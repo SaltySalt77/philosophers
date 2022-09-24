@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 18:15:05 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 19:31:51 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ static int	init_p_args(int ac, char	**av, t_info	*info)
 	}
 	else
 		info->p_args[MUST_EAT] = -1;
+	if (pthread_mutex_init(&(info->print), NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&(info->start), NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&(info->status), NULL) != 0)
+		return (1);
 	return (0);
 }
 
@@ -78,12 +84,6 @@ static int	init_forks(t_info	*info)
 			return (1);
 		i++;
 	}
-	if (pthread_mutex_init(&(info->print), NULL) != 0)
-		return (1);
-	if (pthread_mutex_init(&(info->start), NULL) != 0)
-		return (1);
-	if (pthread_mutex_init(&(info->status), NULL) != 0)
-		return (1);
 	return (0);
 }
 

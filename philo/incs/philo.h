@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 16:49:18 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 18:08:19 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 19:33:26 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,4 @@ int			free_philo(t_philo_lst	*philo);
 int			get_timestamp(struct timeval *std_time,
 				struct timeval *cur_time);
 
-/* test directory */
-void		print_philo_infos(t_philo_lst	*head);
 #endif
