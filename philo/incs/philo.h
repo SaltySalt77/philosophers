@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 16:49:18 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 19:33:26 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 20:46:27 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,12 @@
 // for libft_functions
 # include "philo_utils.h"
 
-//test msg define need to rm before eval
-# define START_MSG "[%d] Started philo[%d]\n"
-
 //mecros for printing state change
-# define TAKEN_FORK_MSG "%dms %d has taken a fork\n"
-# define EATING_MSG "%dms %d is eating\n"
-# define SLEEPING_MSG "%dms %d is sleeping\n"
-# define THINKING_MSG "%dms %d is thinking\n"
-# define DEAD_MSG "%dms %d died\n"
+# define TAKEN_FORK_MSG "%d %d has taken a fork\n"
+# define EATING_MSG "%d %d is eating\n"
+# define SLEEPING_MSG "%d %d is sleeping\n"
+# define THINKING_MSG "%d %d is thinking\n"
+# define DEAD_MSG "%d %d died\n"
 
 typedef enum e_info_idx
 {
