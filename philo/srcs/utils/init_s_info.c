@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 16:50:59 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 18:15:05 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_info	*free_info(t_info	*info)
 	free(info->p_args);
 	free(info->p_ids);
 	free(info->forks);
+	free(info->meal);
 	free(info);
 	return (NULL);
 }
@@ -55,14 +56,25 @@ static int	init_forks(t_info	*info)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	info->forks = malloc(sizeof(pthread_mutex_t)
 			* (info->p_args[NBR_OF_PHILO] + 1));
 	if (info->forks == NULL)
 		return (1);
+	info->meal = malloc(sizeof(pthread_mutex_t)
+			* (info->p_args[NBR_OF_PHILO] + 1));
+	if (info->meal == NULL)
+		return (1);
 	while (i <= info->p_args[NBR_OF_PHILO])
 	{
 		if (pthread_mutex_init(&(info->forks[i]), NULL) != 0)
+			return (1);
+		i++;
+	}
+	i = 1;
+	while (i <= info->p_args[NBR_OF_PHILO])
+	{
+		if (pthread_mutex_init(&(info->meal[i]), NULL) != 0)
 			return (1);
 		i++;
 	}
@@ -84,6 +96,7 @@ t_info	*init_s_info(int ac, char	**av)
 		return (NULL);
 	info->p_ids = NULL;
 	info->forks = NULL;
+	info->meal = NULL;
 	info->p_args = malloc(sizeof(int) * 6);
 	if (info->p_args == NULL)
 		return (free_info(info));

@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:19 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 16:55:41 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 18:13:01 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks)
 {
 	struct timeval	curr;
 
+	pthread_mutex_lock(&(philo->info->meal[philo->name]));
 	if (philo->last_meal_time == NULL)
 	{
 		philo->last_meal_time = malloc(sizeof(struct timeval));
@@ -23,6 +24,7 @@ int	eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks)
 			return (1);
 	}
 	gettimeofday(philo->last_meal_time, NULL);
+	pthread_mutex_unlock(&(philo->info->meal[philo->name]));
 	if (print_status(philo, EATING_MSG))
 		return (1);
 	while (1)

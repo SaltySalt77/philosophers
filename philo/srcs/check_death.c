@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 10:18:20 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 16:35:03 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 18:15:39 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ void	*check_death(void	*value)
 	while (1)
 	{
 		gettimeofday(&curr, NULL);
+		pthread_mutex_lock(&(philo->info->meal[philo->name]));
 		if (philo->last_meal_time && get_timestamp(philo->last_meal_time, &curr)
-			> philo->info->p_args[TIME_TO_DIE])
+			>= philo->info->p_args[TIME_TO_DIE])
 			print_status(philo, DEAD_MSG);
 		else if (!(philo->last_meal_time)
 			&& get_timestamp(philo->info->std_time, &curr)
-			> philo->info->p_args[TIME_TO_DIE])
+			>= philo->info->p_args[TIME_TO_DIE])
 			print_status(philo, DEAD_MSG);
+		pthread_mutex_unlock(&(philo->info->meal[philo->name]));
 		pthread_mutex_lock(&(philo->info->status));
 		if (philo->info->flag != NOTHING)
 		{

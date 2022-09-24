@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:12:54 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 16:56:45 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 17:50:30 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	*check_eaten_time(void	*value)
 		}
 		pthread_mutex_lock(&(philo->info->status));
 		if (min_time == philo->info->p_args[MUST_EAT])
+		{
+			pthread_mutex_unlock(&(philo->info->status));
 			break ;
+		}
 		if (philo->info->flag != NOTHING)
 		{
 			pthread_mutex_unlock(&(philo->info->status));

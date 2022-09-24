@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:02:35 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 19:10:14 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 18:18:40 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,9 @@ static t_philo_lst	*add_new_node(t_info *info, int p_nbr, t_philo_lst	*head)
 	node->right_fork = p_nbr;
 	if (node->left_fork == 0)
 		node->left_fork = info->p_args[NBR_OF_PHILO];
-	node->last_meal_time = malloc(sizeof(struct timeval));
-	if (node->last_meal_time == NULL)
-	{
-		free(node);
-		return (NULL);
-	}
 	node->eaten_time = 0;
 	node->last_act = 0;
+	node->last_meal_time = NULL;
 	node->info = info;
 	node->head = head;
 	node->next = NULL;

@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 16:52:09 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 17:52:51 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	wait_threads(t_info	*info, pthread_t	monitor)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (i <= info->p_args[NBR_OF_PHILO])
 		pthread_join(info->p_ids[i++], NULL);
 	if (info->p_args[MUST_EAT] != -1)

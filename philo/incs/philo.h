@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 16:49:18 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 16:50:08 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 18:08:19 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_info
 	int					*p_args;
 	pthread_t			*p_ids;
 	pthread_mutex_t		*forks;
+	pthread_mutex_t		*meal;
 	pthread_mutex_t		print;
 	pthread_mutex_t		start;
 	pthread_mutex_t		status;
