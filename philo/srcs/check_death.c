@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 10:18:20 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 22:03:34 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 16:35:03 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ void	*check_death(void	*value)
 			&& get_timestamp(philo->info->std_time, &curr)
 			> philo->info->p_args[TIME_TO_DIE])
 			print_status(philo, DEAD_MSG);
+		pthread_mutex_lock(&(philo->info->status));
 		if (philo->info->flag != NOTHING)
+		{
+			pthread_mutex_unlock(&(philo->info->status));
 			break ;
+		}
+		pthread_mutex_unlock(&(philo->info->status));
 		usleep(100);
 	}
 	return (0);

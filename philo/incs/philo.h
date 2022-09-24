@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 15:24:53 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 18:33:46:29 by hyna             ###   ########.fr       */
+/*   Created: 2022/09/24 16:49:18 by hyna              #+#    #+#             */
+/*   Updated: 2022/09/24 16:50:08 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_info
 	pthread_t			*p_ids;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		print;
+	pthread_mutex_t		start;
+	pthread_mutex_t		status;
 	int					flag;
 	struct timeval		*std_time;
 }	t_info;

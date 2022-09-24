@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:42:58 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 22:04:06 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 16:51:42 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 void	wait_stdtime(t_info	*info)
 {
-	while (1)
-	{
-		if (info->std_time)
-			break ;
-		usleep(10);
-	}
+	pthread_mutex_lock(&(info->start));
+	pthread_mutex_unlock(&(info->start));
 }
 
 void	*philo_routine(void	*value)

@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:08:23 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 21:36:11 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 16:11:40 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int	free_philo(t_philo_lst	*philo)
 	while (head)
 	{
 		tmp = head;
-		free(head->last_meal_time);
 		head = head->next;
+		free(tmp->last_meal_time);
+		memset(tmp, 0, sizeof(t_philo_lst));
 		free(tmp);
 	}
 	return (1);

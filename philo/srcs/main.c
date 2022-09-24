@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 21:41:06 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 16:52:09 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int argc, char	**argv)
 	head = init_philo_lst(info);
 	curr = head;
 	i = 1;
+	pthread_mutex_lock(&(info->start));
 	while (curr)
 	{
 		if (pthread_create(&(info->p_ids[i]), NULL,
@@ -50,6 +51,7 @@ int	main(int argc, char	**argv)
 	if (info->std_time == NULL)
 		return (1);
 	gettimeofday(info->std_time, NULL);
+	pthread_mutex_unlock(&(info->start));
 	wait_threads(info, monitor);
 	free_philo(head);
 	return (0);

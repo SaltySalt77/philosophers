@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 18:46:02 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 16:50:59 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,10 @@ static int	init_forks(t_info	*info)
 		i++;
 	}
 	if (pthread_mutex_init(&(info->print), NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&(info->start), NULL) != 0)
+		return (1);
+	if (pthread_mutex_init(&(info->status), NULL) != 0)
 		return (1);
 	return (0);
 }

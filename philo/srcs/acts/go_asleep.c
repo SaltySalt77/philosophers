@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:42:00 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/23 22:00:25 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/24 16:37:40 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,13 @@ int	go_asleep(t_philo_lst	*philo)
 	while (1)
 	{
 		gettimeofday(&curr, NULL);
+		pthread_mutex_lock(&(philo->info->status));
 		if (philo->info->flag != NOTHING)
+		{
+			pthread_mutex_unlock(&(philo->info->status));
 			return (1);
+		}
+		pthread_mutex_unlock(&(philo->info->status));
 		if (get_timestamp(&start, &curr)
 			>= philo->info->p_args[TIME_TO_SLEEP])
 			break ;
