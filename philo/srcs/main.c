@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 20:04:16 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/25 15:03:40 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	create_threads(t_info	*info, t_philo_lst	*philo, pthread_t *monitor)
 	pthread_mutex_lock(&(info->start));
 	while (curr)
 	{
-		if (pthread_create(&(info->p_ids[i]), NULL,
+		if (pthread_create(&(info->p_ids[i++]), NULL,
 				&philo_routine, (void *)curr) != 0)
 			return (1);
 		curr = curr->next;

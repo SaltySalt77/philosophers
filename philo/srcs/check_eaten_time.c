@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_eaten_time.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 11:12:54 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 20:11:14 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/25 14:32:23 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	*check_eaten_time(void	*value)
 	wait_stdtime(philo->info);
 	while (1)
 	{
-		set_status(philo);
+		if (set_status(philo))
+			break ;
 		usleep(100);
 	}
 	pthread_mutex_lock(&(philo->info->status));
