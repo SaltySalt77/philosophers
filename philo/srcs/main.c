@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/25 15:03:40 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/25 16:13:48 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,25 @@ int	create_threads(t_info	*info, t_philo_lst	*philo, pthread_t *monitor)
 	return (0);
 }
 
+int	validate_arguments(char	**argv)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (!ft_isdigit(argv[i][j++]))
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	main(int argc, char	**argv)
 {
 	t_info			*info;
@@ -55,6 +74,8 @@ int	main(int argc, char	**argv)
 	pthread_t		monitor;
 
 	if (argc < 5 || argc > 6)
+		return (1);
+	if (validate_arguments(argv))
 		return (1);
 	info = init_s_info(argc, argv);
 	head = init_philo_lst(info);
