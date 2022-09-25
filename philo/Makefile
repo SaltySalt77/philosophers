@@ -6,13 +6,13 @@
 #    By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 15:40:24 by hyna              #+#    #+#              #
-#    Updated: 2022/09/25 14:55:54 by hyna             ###   ########.fr        #
+#    Updated: 2022/09/25 18:07:24 by hyna             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 CC = cc
-CCFLAGS = -Wall -Werror -Wextra #-g3 -fsanitize=thread
+CCFLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=thread
 INC_LINK = -I./incs
 SRCS_DIRS = acts\
 			utils\

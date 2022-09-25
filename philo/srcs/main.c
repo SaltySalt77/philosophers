@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/25 16:13:48 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/25 18:09:04 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,22 @@ int	validate_arguments(char	**argv)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		j = 0;
 		while (argv[i][j])
 		{
-			if (!ft_isdigit(argv[i][j++]))
+			if (j == 0)
+			{
+				if (ft_isdigit(argv[i][j]) == 0 && argv[i][j] != '+')
+					return (1);
+				else if (argv[i][j] == '+' && argv[i][j + 1] == 0)
+					return (1);
+			}
+			else if (!ft_isdigit(argv[i][j]))
 				return (1);
+			j++;
 		}
 		i++;
 	}
