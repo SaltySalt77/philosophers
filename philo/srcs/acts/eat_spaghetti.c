@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eat_spaghetti.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:19 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 19:30:15 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/25 14:50:44 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,20 @@ static int	init_last_meat_time(t_philo_lst	*philo)
 int	eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks)
 {
 	struct timeval	curr;
+	int				retval;
 
+	retval = 0;
 	if (init_last_meat_time(philo))
 		return (1);
 	if (print_status(philo, EATING_MSG))
 		return (1);
-	while (1)
+	while (!usleep(100))
 	{
 		pthread_mutex_lock(&(philo->info->status));
 		if (philo->info->flag != NOTHING)
 		{
 			pthread_mutex_unlock(&(philo->info->status));
+			retval = philo->info->flag;
 			break ;
 		}
 		pthread_mutex_unlock(&(philo->info->status));
@@ -56,8 +59,7 @@ int	eat_spaghetti(t_philo_lst	*philo, pthread_mutex_t	*forks)
 		if (get_timestamp(philo->last_meal_time, &curr)
 			>= philo->info->p_args[TIME_TO_EAT])
 			break ;
-		usleep(100);
 	}
 	add_eaten_time_unlock(philo, forks);
-	return (philo->info->flag);
+	return (retval);
 }
