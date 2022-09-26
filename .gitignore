@@ -6,3 +6,4 @@ example
 */*.log
 */a.out
 */*.json
+# philo/philo
