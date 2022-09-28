@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:42:58 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 00:36:57 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 01:41:50 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	wait_stdtime(t_info	*info)
 {
 	sem_wait(info->start);
-	gettimeofday(info->std_time, NULL);
 	sem_post(info->start);
 }
 
@@ -40,5 +39,5 @@ void	*philo_routine(t_philo_lst	*philo)
 		// 	break ;
 	}
 	pthread_join(monitor, NULL);
-	return (0);
+	exit(IS_DEAD);
 }

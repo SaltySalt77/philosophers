@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 10:18:20 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 00:15:39 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 01:14:22 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*check_death(void	*value)
 	{
 		is_dead(philo);
 		if (philo->info->flag != NOTHING)
-			return ((void	*)1);
+			return ((void *)1);
 		usleep(100);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:47:21 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 00:46:45 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 01:45:24 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,22 @@ int	one_philo(t_info	*info)
 	return (1);
 }
 
-int	print_status(t_philo_lst	*philo, char	*msg)
+int	print_status(t_philo_lst	*philo, const char	*msg)
 {
 	struct timeval		time;
 
 	sem_wait(philo->info->print);
-	if (philo->info->flag == NOTHING)
+	gettimeofday(&time, NULL);
+	usleep(100);
+	printf(msg,
+		get_timestamp(philo->info->std_time, &time), philo->name);
+	if (msg[8] == DEAD_MSG[8])
 	{
-		gettimeofday(&time, NULL);
-		fprintf(stderr, "imhere\n");
-		printf(msg,
-			get_timestamp(philo->info->std_time, &time), philo->name);
-		fprintf(stderr, "imhere\n");
-		if (msg[8] == DEAD_MSG[8])
-			philo->info->flag = IS_DEAD;
-		sem_post(philo->info->print);
-		if (philo->name == 1)
-			return (one_philo(philo->info));
-		return (0);
+		sem_post(philo->info->seat);
+		exit(IS_DEAD);
 	}
 	sem_post(philo->info->print);
-	return (1);
+	if (philo->name == 1)
+		return (one_philo(philo->info));
+	return (0);
 }

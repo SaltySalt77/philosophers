@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 00:38:44 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 01:42:48 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static int	kill_philos(t_info	*info)
 	int	i;
 
 	i = 1;
-	sem_wait(info->print);
 	while (i <= info->p_args[NBR_OF_PHILO])
 		kill(info->p_ids[i++], SIGKILL);
 	return (1);
@@ -28,6 +27,7 @@ static int	fork_philos(t_philo_lst	*philo, t_info	*info)
 	int	i;
 
 	i = 1;
+	gettimeofday(info->std_time, NULL);
 	while (i <= info->p_args[NBR_OF_PHILO])
 	{
 		info->p_ids[i] = fork();
@@ -36,29 +36,22 @@ static int	fork_philos(t_philo_lst	*philo, t_info	*info)
 		else if (info->p_ids < 0)
 			return (1);
 		i++;
+		philo = philo->next;
+		sem_wait(info->seat);
 	}
 	return (0);
 }
 
 static void	wait_philos(t_info	*info)
 {
-	int		status;
-	int		exit_code;
-	pid_t	wpid;
+	// int		status;
+	// // int		exit_code;v
+	// pid_t	wpid;
 
-	wpid = 0;
-	status = NOTHING;
+	// wpid = 0;
 	sem_post(info->start);
-	while (wpid != -1 && status != IS_DEAD)
-	{
-		waitpid(-1, &exit_code, 0);
-		if (WIFEXITED(exit_code))
-			status = WEXITSTATUS(exit_code);
-		else
-			kill_philos(info);
-	}
-	if (status == IS_DEAD)
-		kill_philos(info);
+	sem_wait(info->seat);
+	kill_philos(info);
 }
 
 int	validate_arguments(char	**argv)

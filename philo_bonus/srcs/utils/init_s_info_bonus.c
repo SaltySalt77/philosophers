@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_s_info.c                                      :+:      :+:    :+:   */
+/*   init_s_info_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/28 22:54:03 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 01:55:59 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
 /* initializing sturct s_info */
-
-/* free info */
-
-t_info	*free_info(t_info	*info)
-{
-	free(info->p_args);
-	free(info->p_ids);
-	free(info);
-	return (NULL);
-}
 
 /* initialize p_arguments with argv */
 
@@ -58,13 +48,28 @@ static pid_t	*init_p_ids(int p_nbrs)
 
 /* open semaphores for global use */
 
+static int	init_forks(t_info	*info)
+{
+	int	i;
+
+	i = 0;
+	if (info->p_args[NBR_OF_PHILO] % 2)
+		i = 1;
+	sem_unlink("lforks");
+	info->lforks = sem_open("lforks", O_CREAT, S_IRWXU,
+			info->p_args[NBR_OF_PHILO] / 2 + i);
+	if (info->lforks == SEM_FAILED)
+		return (1);
+	sem_unlink("rforks");
+	info->rforks = sem_open("rforks", O_CREAT, S_IRWXU,
+			info->p_args[NBR_OF_PHILO] / 2);
+	if (info->rforks == SEM_FAILED)
+		return (1);
+	return (0);
+}
+
 static int	init_semaphores(t_info	*info)
 {
-	sem_unlink("forks");
-	info->forks
-		= sem_open("forks", O_CREAT, S_IRWXU, info->p_args[NBR_OF_PHILO]);
-	if (info->forks == SEM_FAILED)
-		return (1);
 	sem_unlink("print");
 	info->print
 		= sem_open("print", O_CREAT, S_IRWXU, 1);
@@ -74,6 +79,11 @@ static int	init_semaphores(t_info	*info)
 	info->start
 		= sem_open("start", O_CREAT, S_IRWXU, 1);
 	if (info->start == SEM_FAILED)
+		return (1);
+	sem_unlink("seat");
+	info->seat
+		= sem_open("seat", O_CREAT, S_IRWXU, info->p_args[NBR_OF_PHILO]);
+	if (info->seat == SEM_FAILED)
 		return (1);
 	return (0);
 }
@@ -94,9 +104,13 @@ t_info	*init_s_info(int ac, char	**av)
 	info->p_ids = init_p_ids(info->p_args[NBR_OF_PHILO]);
 	if (info->p_ids == NULL)
 		return (free_info(info));
+	info->std_time = malloc(sizeof(struct timeval));
+	if (info->std_time == NULL)
+		return (free_info(info));
+	if (init_forks(info))
+		return (free_info(info));
 	if (init_semaphores(info))
 		return (free_info(info));
 	info->flag = 0;
-	info->std_time = NULL;
 	return (info);
 }

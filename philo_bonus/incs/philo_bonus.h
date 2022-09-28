@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 16:49:18 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 00:36:08 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 01:46:36 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ typedef struct s_info
 {
 	int					*p_args;
 	pid_t				*p_ids;
-	sem_t				*forks;
+	sem_t				*lforks;
+	sem_t				*rforks;
 	sem_t				*print;
 	sem_t				*start;
+	sem_t				*seat;
 	pthread_mutex_t		status; // <<??
 	int					flag;
 	struct timeval		*std_time;
@@ -83,7 +85,7 @@ int			eat_spaghetti(t_philo_lst	*philo);
 int			go_asleep(t_philo_lst	*philo);
 int			take_fork(t_philo_lst	*philo);
 int			think(t_philo_lst	*philo);
-int			print_status(t_philo_lst	*philo, char	*msg);
+int			print_status(t_philo_lst	*philo, const char	*msg);
 	//prints status of philo in format msg
 
 /* utils directory */
