@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   take_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:46:18 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 21:26:17 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 21:52:54 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	take_fork(t_philo_lst	*philo, pthread_mutex_t	*forks)
 {

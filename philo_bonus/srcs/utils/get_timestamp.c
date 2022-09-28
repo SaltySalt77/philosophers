@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_timestamp.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:46:09 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 20:32:35 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 21:52:54 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	get_timestamp(struct timeval *std_time, struct timeval *cur_time)
 {

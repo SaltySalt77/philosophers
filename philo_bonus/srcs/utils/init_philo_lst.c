@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_philo_lst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:02:35 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 21:26:25 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 21:52:54 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static void	cross_hands(t_philo_lst	*node)
 {

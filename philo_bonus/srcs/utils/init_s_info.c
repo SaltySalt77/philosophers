@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_s_info.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 19:31:51 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 22:05:57 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 /* initializing sturct s_info */
 
@@ -18,8 +18,6 @@ t_info	*free_info(t_info	*info)
 {
 	free(info->p_args);
 	free(info->p_ids);
-	free(info->forks);
-	free(info->meal);
 	free(info);
 	return (NULL);
 }
@@ -58,32 +56,23 @@ static pthread_t	*init_p_ids(int p_nbrs)
 	return (p_ids);
 }
 
-static int	init_forks(t_info	*info)
+static int	init_semaphores(t_info	*info)
 {
-	int	i;
-
-	i = 1;
-	info->forks = malloc(sizeof(pthread_mutex_t)
-			* (info->p_args[NBR_OF_PHILO] + 1));
-	if (info->forks == NULL)
+	sem_unlink("forks");
+	info->forks
+		= sem_open("forks", O_CREAT, S_IRWXU, info->p_args[NBR_OF_PHILO]);
+	if (info->forks == SEM_FAILED)
 		return (1);
-	info->meal = malloc(sizeof(pthread_mutex_t)
-			* (info->p_args[NBR_OF_PHILO] + 1));
-	if (info->meal == NULL)
+	sem_unlink("print");
+	info->print
+		= sem_open("print", O_CREAT, S_IRWXU, 1);
+	if (info->print == SEM_FAILED)
 		return (1);
-	while (i <= info->p_args[NBR_OF_PHILO])
-	{
-		if (pthread_mutex_init(&(info->forks[i]), NULL) != 0)
-			return (1);
-		i++;
-	}
-	i = 1;
-	while (i <= info->p_args[NBR_OF_PHILO])
-	{
-		if (pthread_mutex_init(&(info->meal[i]), NULL) != 0)
-			return (1);
-		i++;
-	}
+	sem_unlink("start");
+	info->start
+		= sem_open("start", O_CREAT, S_IRWXU, 1);
+	if (info->start == SEM_FAILED)
+		return (1);
 	return (0);
 }
 
@@ -95,8 +84,6 @@ t_info	*init_s_info(int ac, char	**av)
 	if (info == NULL)
 		return (NULL);
 	info->p_ids = NULL;
-	info->forks = NULL;
-	info->meal = NULL;
 	info->p_args = malloc(sizeof(int) * 6);
 	if (info->p_args == NULL)
 		return (free_info(info));
@@ -105,7 +92,7 @@ t_info	*init_s_info(int ac, char	**av)
 	info->p_ids = init_p_ids(info->p_args[NBR_OF_PHILO]);
 	if (info->p_ids == NULL)
 		return (free_info(info));
-	if (init_forks(info))
+	if (init_semaphores(info))
 		return (free_info(info));
 	info->flag = 0;
 	info->std_time = NULL;

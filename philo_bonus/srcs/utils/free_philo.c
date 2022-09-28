@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_philo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 12:08:23 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 19:29:31 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 21:52:54 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static void	destroy_mutexes(t_info	*info)
 {

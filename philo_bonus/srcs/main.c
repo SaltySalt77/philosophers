@@ -6,24 +6,21 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/25 18:09:04 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 21:52:54 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
-void	wait_threads(t_info	*info, pthread_t	monitor)
+void	wait_thread(t_info	*info, pthread_t	monitor)
 {
 	int	i;
 
-	i = 1;
-	while (i <= info->p_args[NBR_OF_PHILO])
-		pthread_join(info->p_ids[i++], NULL);
 	if (info->p_args[MUST_EAT] != -1)
 		pthread_join(monitor, NULL);
 }
-
-int	create_threads(t_info	*info, t_philo_lst	*philo, pthread_t *monitor)
+/* need to find out how to check the number of times philosophers have eaten 
+int	create_monitor(t_info	*info, t_philo_lst	*philo, pthread_t *monitor)
 {
 	int				i;
 	t_philo_lst		*curr;
@@ -46,7 +43,7 @@ int	create_threads(t_info	*info, t_philo_lst	*philo, pthread_t *monitor)
 	gettimeofday(info->std_time, NULL);
 	pthread_mutex_unlock(&(info->start));
 	return (0);
-}
+}*/
 
 int	validate_arguments(char	**argv)
 {
@@ -87,9 +84,8 @@ int	main(int argc, char	**argv)
 		return (1);
 	info = init_s_info(argc, argv);
 	head = init_philo_lst(info);
-	if (create_threads(info, head, &monitor))
-		return (1);
-	wait_threads(info, monitor);
+	/* fork philos */
+	wait_thread(info, monitor); // need to find out how to check the number of times philosophers have eaten  
 	free_philo(head);
 	return (0);
 }

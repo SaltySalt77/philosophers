@@ -6,11 +6,11 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:19 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/25 14:50:44 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 21:52:54 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 static void	add_eaten_time_unlock(t_philo_lst	*philo, pthread_mutex_t	*forks)
 {

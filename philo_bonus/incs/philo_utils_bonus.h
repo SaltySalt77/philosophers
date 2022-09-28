@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.h                                      :+:      :+:    :+:   */
+/*   philo_utils_bonus.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:43:55 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/24 20:36:29 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 20:18:02 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_UTILS_H
-# define PHILO_UTILS_H
+#ifndef PHILO_UTILS_BONUS_H
+# define PHILO_UTILS_BONUS_H
 
 # include <stddef.h>
 
