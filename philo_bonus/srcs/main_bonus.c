@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 00:12:15 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 00:38:44 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	kill_philos(t_info	*info)
 	int	i;
 
 	i = 1;
-	sem_wait(&(info->print));
+	sem_wait(info->print);
 	while (i <= info->p_args[NBR_OF_PHILO])
 		kill(info->p_ids[i++], SIGKILL);
 	return (1);
@@ -48,7 +48,7 @@ static void	wait_philos(t_info	*info)
 
 	wpid = 0;
 	status = NOTHING;
-	sem_post(&(info->start));
+	sem_post(info->start);
 	while (wpid != -1 && status != IS_DEAD)
 	{
 		waitpid(-1, &exit_code, 0);
@@ -99,7 +99,7 @@ int	main(int argc, char	**argv)
 		return (1);
 	info = init_s_info(argc, argv);
 	head = init_philo_lst(info);
-	sem_wait(&(info->start));
+	sem_wait(info->start);
 	if (fork_philos(head, info))
 	{
 		free_philo(head);

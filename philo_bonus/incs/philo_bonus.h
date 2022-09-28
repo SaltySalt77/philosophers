@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 16:49:18 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 00:19:02 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 00:36:08 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ typedef struct s_info
 {
 	int					*p_args;
 	pid_t				*p_ids;
-	sem_t				forks;
-	sem_t				print;
-	sem_t				start;
+	sem_t				*forks;
+	sem_t				*print;
+	sem_t				*start;
 	pthread_mutex_t		status; // <<??
 	int					flag;
 	struct timeval		*std_time;
