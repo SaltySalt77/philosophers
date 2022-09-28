@@ -6,20 +6,23 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 01:42:48 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 02:37:22 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-static int	kill_philos(t_info	*info)
+void	*kill_philos(void	*value)
 {
-	int	i;
+	int		i;
+	t_info	*info;
 
+	info = (t_info *)value;
 	i = 1;
+	sem_wait(info->seat);
 	while (i <= info->p_args[NBR_OF_PHILO])
 		kill(info->p_ids[i++], SIGKILL);
-	return (1);
+	return (0);
 }
 
 static int	fork_philos(t_philo_lst	*philo, t_info	*info)
@@ -44,14 +47,23 @@ static int	fork_philos(t_philo_lst	*philo, t_info	*info)
 
 static void	wait_philos(t_info	*info)
 {
-	// int		status;
-	// // int		exit_code;v
-	// pid_t	wpid;
+	pthread_t	monitor;
+	pid_t		wpid;
+	int			status;
+	int			i;
 
-	// wpid = 0;
+	i = 1;
+	if (pthread_create(&monitor, NULL, &kill_philos, (void *)info))
+	{
+		while (i <= info->p_args[NBR_OF_PHILO])
+			kill(info->p_ids[i++], SIGKILL);
+		exit(1);
+	}
 	sem_post(info->start);
-	sem_wait(info->seat);
-	kill_philos(info);
+	wpid = 1;
+	while (wpid > 0)
+		wpid = waitpid(-1, &status, 0);
+	pthread_join(monitor, NULL);
 }
 
 int	validate_arguments(char	**argv)

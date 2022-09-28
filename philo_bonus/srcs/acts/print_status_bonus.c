@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:47:21 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 01:45:24 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 02:36:07 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	print_status(t_philo_lst	*philo, const char	*msg)
 {
 	struct timeval		time;
 
-	sem_wait(philo->info->print);
 	gettimeofday(&time, NULL);
 	usleep(100);
 	printf(msg,
@@ -37,8 +36,7 @@ int	print_status(t_philo_lst	*philo, const char	*msg)
 		sem_post(philo->info->seat);
 		exit(IS_DEAD);
 	}
-	sem_post(philo->info->print);
-	if (philo->name == 1)
+	if (philo->info->p_args[NBR_OF_PHILO] == 1)
 		return (one_philo(philo->info));
 	return (0);
 }

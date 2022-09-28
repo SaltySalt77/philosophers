@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 20:42:58 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 01:41:50 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 02:34:20 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	*philo_routine(t_philo_lst	*philo)
 	{
 		if (take_fork(philo) != NOTHING)
 			break ;
-		// if (eat_spaghetti(philo, philo->info->forks) != NOTHING)
-		// 	break ;
-		// if (go_asleep(philo) != NOTHING)
-		// 	break ;
-		// if (think(philo) != NOTHING)
-		// 	break ;
+		if (eat_spaghetti(philo) != NOTHING)
+			break ;
+		if (go_asleep(philo) != NOTHING)
+			break ;
+		if (think(philo) != NOTHING)
+			break ;
 	}
 	pthread_join(monitor, NULL);
 	exit(IS_DEAD);
