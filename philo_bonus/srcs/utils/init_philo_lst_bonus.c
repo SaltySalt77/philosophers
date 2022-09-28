@@ -6,20 +6,11 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 19:02:35 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/28 21:52:54 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 23:46:34 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-
-static void	cross_hands(t_philo_lst	*node)
-{
-	int	tmp;
-
-	tmp = node->left_fork;
-	node->left_fork = node->right_fork;
-	node->right_fork = tmp;
-}
 
 static t_philo_lst	*add_new_node(t_info *info, int p_nbr, t_philo_lst	*head)
 {
@@ -29,10 +20,6 @@ static t_philo_lst	*add_new_node(t_info *info, int p_nbr, t_philo_lst	*head)
 	if (node == NULL)
 		return (NULL);
 	node->name = p_nbr;
-	node->left_fork = p_nbr - 1;
-	node->right_fork = p_nbr;
-	if (node->left_fork == 0)
-		node->left_fork = info->p_args[NBR_OF_PHILO];
 	node->eaten_time = 0;
 	node->last_act = 0;
 	node->last_meal_time = NULL;

@@ -6,7 +6,7 @@
 #    By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 15:40:24 by hyna              #+#    #+#              #
-#    Updated: 2022/09/25 18:07:24 by hyna             ###   ########.fr        #
+#    Updated: 2022/09/29 00:17:34 by hyna             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,12 @@ INC_LINK = -I./incs
 SRCS_DIRS = acts\
 			utils\
 
-SRCS_NAME = main.c philo_routine.c check_death.c check_eaten_time.c\
-			acts/take_fork.c acts/eat_spaghetti.c acts/go_asleep.c acts/think.c\
-			acts/print_status.c\
-			utils/init_s_info.c utils/ft_atoi.c\
-			utils/free_philo.c\
-			utils/ft_isdigit.c utils/init_philo_lst.c utils/get_timestamp.c\
+SRCS_NAME = main_bonus.c philo_routine_bonus.c check_death_bonus.c\
+			acts/take_fork_bonus.c acts/eat_spaghetti_bonus.c acts/go_asleep_bonus.c acts/think_bonus.c\
+			acts/print_status_bonus.c\
+			utils/init_s_info_bonus.c utils/ft_atoi_bonus.c\
+			utils/free_philo_bonus.c\
+			utils/ft_isdigit_bonus.c utils/init_philo_lst_bonus.c utils/get_timestamp_bonus.c\
 			
 SRCS_PATH = ./srcs
 SRCS = $(addprefix $(SRCS_PATH)/, $(SRCS_NAME))

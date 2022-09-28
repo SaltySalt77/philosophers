@@ -6,44 +6,60 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/28 21:52:54 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 00:12:15 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	wait_thread(t_info	*info, pthread_t	monitor)
+static int	kill_philos(t_info	*info)
 {
 	int	i;
 
-	if (info->p_args[MUST_EAT] != -1)
-		pthread_join(monitor, NULL);
+	i = 1;
+	sem_wait(&(info->print));
+	while (i <= info->p_args[NBR_OF_PHILO])
+		kill(info->p_ids[i++], SIGKILL);
+	return (1);
 }
-/* need to find out how to check the number of times philosophers have eaten 
-int	create_monitor(t_info	*info, t_philo_lst	*philo, pthread_t *monitor)
+
+static int	fork_philos(t_philo_lst	*philo, t_info	*info)
 {
-	int				i;
-	t_philo_lst		*curr;
+	int	i;
 
 	i = 1;
-	curr = philo;
-	pthread_mutex_lock(&(info->start));
-	while (curr)
+	while (i <= info->p_args[NBR_OF_PHILO])
 	{
-		if (pthread_create(&(info->p_ids[i++]), NULL,
-				&philo_routine, (void *)curr) != 0)
+		info->p_ids[i] = fork();
+		if (info->p_ids[i] == 0)
+			philo_routine(philo);
+		else if (info->p_ids < 0)
 			return (1);
-		curr = curr->next;
+		i++;
 	}
-	if (info->p_args[MUST_EAT] != -1)
-		pthread_create(monitor, NULL, &check_eaten_time, philo);
-	info->std_time = malloc(sizeof(struct timeval));
-	if (info->std_time == NULL)
-		return (1);
-	gettimeofday(info->std_time, NULL);
-	pthread_mutex_unlock(&(info->start));
 	return (0);
-}*/
+}
+
+static void	wait_philos(t_info	*info)
+{
+	int		status;
+	int		exit_code;
+	pid_t	wpid;
+
+	wpid = 0;
+	status = NOTHING;
+	sem_post(&(info->start));
+	while (wpid != -1 && status != IS_DEAD)
+	{
+		waitpid(-1, &exit_code, 0);
+		if (WIFEXITED(exit_code))
+			status = WEXITSTATUS(exit_code);
+		else
+			kill_philos(info);
+	}
+	if (status == IS_DEAD)
+		kill_philos(info);
+}
 
 int	validate_arguments(char	**argv)
 {
@@ -76,7 +92,6 @@ int	main(int argc, char	**argv)
 {
 	t_info			*info;
 	t_philo_lst		*head;
-	pthread_t		monitor;
 
 	if (argc < 5 || argc > 6)
 		return (1);
@@ -84,8 +99,13 @@ int	main(int argc, char	**argv)
 		return (1);
 	info = init_s_info(argc, argv);
 	head = init_philo_lst(info);
-	/* fork philos */
-	wait_thread(info, monitor); // need to find out how to check the number of times philosophers have eaten  
+	sem_wait(&(info->start));
+	if (fork_philos(head, info))
+	{
+		free_philo(head);
+		return (1);
+	}
+	wait_philos(info);
 	free_philo(head);
 	return (0);
 }

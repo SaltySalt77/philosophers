@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 16:49:18 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/28 21:54:20 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/29 00:19:02 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <string.h>
+# include <signal.h>
 
 // for semaphores
 # include <semaphore.h>
@@ -53,7 +54,7 @@ typedef enum e_philo_status
 typedef struct s_info
 {
 	int					*p_args;
-	pthread_t			*p_ids;
+	pid_t				*p_ids;
 	sem_t				forks;
 	sem_t				print;
 	sem_t				start;
@@ -69,20 +70,18 @@ typedef struct s_philo_lst
 	int					eaten_time;
 	int					last_act;
 	struct s_info		*info;
-	struct s_philo_lst	*head;
 	struct s_philo_lst	*next;
 }	t_philo_lst;
 
 /* root directory */
 void		*check_death(void	*value);
-void		*check_eaten_time(void	*value);
-void		*philo_routine(void	*value);
+void		*philo_routine(t_philo_lst	*philo);
 void		wait_stdtime(t_info	*info);
 
 /* act directory */
-int			eat_spaghetti(t_philo_lst	*philo, sem_t	forks);
+int			eat_spaghetti(t_philo_lst	*philo);
 int			go_asleep(t_philo_lst	*philo);
-int			take_fork(t_philo_lst	*philo, sem_t	forks);
+int			take_fork(t_philo_lst	*philo);
 int			think(t_philo_lst	*philo);
 int			print_status(t_philo_lst	*philo, char	*msg);
 	//prints status of philo in format msg

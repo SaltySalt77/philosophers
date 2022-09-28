@@ -6,13 +6,15 @@
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/28 22:05:57 by hyna             ###   ########.fr       */
+/*   Updated: 2022/09/28 22:54:03 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
 /* initializing sturct s_info */
+
+/* free info */
 
 t_info	*free_info(t_info	*info)
 {
@@ -21,6 +23,8 @@ t_info	*free_info(t_info	*info)
 	free(info);
 	return (NULL);
 }
+
+/* initialize p_arguments with argv */
 
 static int	init_p_args(int ac, char	**av, t_info	*info)
 {
@@ -36,25 +40,23 @@ static int	init_p_args(int ac, char	**av, t_info	*info)
 	}
 	else
 		info->p_args[MUST_EAT] = -1;
-	if (pthread_mutex_init(&(info->print), NULL) != 0)
-		return (1);
-	if (pthread_mutex_init(&(info->start), NULL) != 0)
-		return (1);
-	if (pthread_mutex_init(&(info->status), NULL) != 0)
-		return (1);
 	return (0);
 }
 
-static pthread_t	*init_p_ids(int p_nbrs)
-{
-	pthread_t	*p_ids;
+/* initialze double string array of pid of philos */
 
-	p_ids = malloc(sizeof(pthread_t) * (p_nbrs + 1));
+static pid_t	*init_p_ids(int p_nbrs)
+{
+	pid_t	*p_ids;
+
+	p_ids = malloc(sizeof(pid_t) * (p_nbrs + 1));
 	if (p_ids == NULL)
 		return (NULL);
-	memset(p_ids, 0, sizeof(pthread_t) * (p_nbrs + 1));
+	memset(p_ids, 0, sizeof(pid_t) * (p_nbrs + 1));
 	return (p_ids);
 }
+
+/* open semaphores for global use */
 
 static int	init_semaphores(t_info	*info)
 {

@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   think.c                                            :+:      :+:    :+:   */
+/*   take_fork.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/19 19:04:11 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/28 21:52:54 by hyna             ###   ########.fr       */
+/*   Created: 2022/09/19 15:46:18 by hyna              #+#    #+#             */
+/*   Updated: 2022/09/29 00:11:07 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int	think(t_philo_lst	*philo)
+int	take_fork(t_philo_lst	*philo)
 {
-	if (print_status(philo, THINKING_MSG))
+	if (philo->name % 2 == 0)
+		usleep(100);
+	sem_wait(&(philo->info->forks));
+	if (print_status(philo, TAKEN_FORK_MSG))
+	{
+		sem_post(&(philo->info->forks));
 		return (1);
-	usleep(200);
+	}
+	sem_wait(&(philo->info->forks));
+	if (print_status(philo, TAKEN_FORK_MSG))
+	{
+		sem_post(&(philo->info->forks));
+		sem_post(&(philo->info->forks));
+		return (1);
+	}
 	return (0);
 }
