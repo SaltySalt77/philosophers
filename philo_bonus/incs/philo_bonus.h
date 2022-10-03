@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/24 16:49:18 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 01:46:36 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/03 18:47:00 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <wait.h>
 # include <string.h>
+# include <fcntl.h>
 # include <signal.h>
 
 // for semaphores
@@ -60,7 +62,7 @@ typedef struct s_info
 	sem_t				*print;
 	sem_t				*start;
 	sem_t				*seat;
-	pthread_mutex_t		status; // <<??
+	sem_t				*meal;
 	int					flag;
 	struct timeval		*std_time;
 }	t_info;
@@ -77,6 +79,7 @@ typedef struct s_philo_lst
 
 /* root directory */
 void		*check_death(void	*value);
+void		*check_eaten_time(void	*value);
 void		*philo_routine(t_philo_lst	*philo);
 void		wait_stdtime(t_info	*info);
 

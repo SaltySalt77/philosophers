@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   eat_spaghetti_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:19 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 02:07:28 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/03 18:40:27 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	add_eaten_time_post(t_philo_lst	*philo)
 	sem_post(philo->info->rforks);
 	philo->eaten_time++;
 	if (philo->eaten_time == philo->info->p_args[MUST_EAT])
-		exit(EATEN_ALL);
+		sem_post(philo->info->meal);
 }
 
 static int	init_last_meat_time(t_philo_lst	*philo)
@@ -36,9 +36,7 @@ static int	init_last_meat_time(t_philo_lst	*philo)
 int	eat_spaghetti(t_philo_lst	*philo)
 {
 	struct timeval	curr;
-	int				retval;
 
-	retval = 0;
 	if (init_last_meat_time(philo))
 		return (1);
 	if (print_status(philo, EATING_MSG))

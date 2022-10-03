@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   init_s_info_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 17:26:57 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 01:55:59 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/03 18:39:49 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-/* initializing sturct s_info */
+/* initializing struct s_info */
 
 /* initialize p_arguments with argv */
 
@@ -64,6 +64,11 @@ static int	init_forks(t_info	*info)
 	info->rforks = sem_open("rforks", O_CREAT, S_IRWXU,
 			info->p_args[NBR_OF_PHILO] / 2);
 	if (info->rforks == SEM_FAILED)
+		return (1);
+	sem_unlink("meal");
+	info->meal = sem_open("meal", O_CREAT, S_IRWXU,
+			info->p_args[NBR_OF_PHILO]);
+	if (info->meal == SEM_FAILED)
 		return (1);
 	return (0);
 }

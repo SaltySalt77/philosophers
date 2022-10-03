@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+         #
+#    By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/18 15:40:24 by hyna              #+#    #+#              #
-#    Updated: 2022/09/29 09:59:19 by hyna             ###   ########.fr        #
+#    Updated: 2022/10/03 18:53:09 by hyna             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ INC_LINK = -I./incs
 SRCS_DIRS = acts\
 			utils\
 
-SRCS_NAME = main_bonus.c philo_routine_bonus.c check_death_bonus.c\
+SRCS_NAME = main_bonus.c philo_routine_bonus.c check_death_bonus.c check_eaten_time_bonus.c\
 			acts/take_fork_bonus.c acts/eat_spaghetti_bonus.c acts/go_asleep_bonus.c acts/think_bonus.c\
 			acts/print_status_bonus.c\
 			utils/init_s_info_bonus.c utils/ft_atoi_bonus.c\

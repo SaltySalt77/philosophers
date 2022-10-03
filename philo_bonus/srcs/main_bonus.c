@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 06:23:22 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/03 18:52:03 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	*kill_philos(void	*value)
 	i = 1;
 	sem_wait(info->seat);
 	while (i <= info->p_args[NBR_OF_PHILO])
+	{
 		kill(info->p_ids[i++], SIGKILL);
+		sem_post(info->meal);
+	}
 	return (0);
 }
 
@@ -36,24 +39,32 @@ static int	fork_philos(t_philo_lst	*philo, t_info	*info)
 		info->p_ids[i] = fork();
 		if (info->p_ids[i] == 0)
 			philo_routine(philo);
-		else if (info->p_ids < 0)
+		else if (info->p_ids[i] < 0)
 			return (1);
 		i++;
 		philo = philo->next;
 		sem_wait(info->seat);
+		sem_wait(info->meal);
 	}
 	return (0);
 }
 
 static void	wait_philos(t_info	*info)
 {
-	pthread_t	monitor;
+	pthread_t	k_monitor;
+	pthread_t	m_monitor;
 	pid_t		wpid;
 	int			status;
 	int			i;
 
 	i = 1;
-	if (pthread_create(&monitor, NULL, &kill_philos, (void *)info))
+	if (pthread_create(&k_monitor, NULL, &kill_philos, (void *)info))
+	{
+		while (i <= info->p_args[NBR_OF_PHILO])
+			kill(info->p_ids[i++], SIGKILL);
+		exit(1);
+	}
+	if (pthread_create(&m_monitor, NULL, &check_eaten_time, (void *)info))
 	{
 		while (i <= info->p_args[NBR_OF_PHILO])
 			kill(info->p_ids[i++], SIGKILL);
@@ -63,7 +74,8 @@ static void	wait_philos(t_info	*info)
 	wpid = 1;
 	while (wpid > 0)
 		wpid = waitpid(-1, &status, 0);
-	pthread_join(monitor, NULL);
+	pthread_join(k_monitor, NULL);
+	pthread_join(m_monitor, NULL);
 }
 
 int	validate_arguments(char	**argv)
