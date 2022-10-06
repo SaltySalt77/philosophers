@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:13:19 by hyna              #+#    #+#             */
-/*   Updated: 2022/10/03 18:40:27 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/06 17:00:55 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ int	eat_spaghetti(t_philo_lst	*philo)
 	struct timeval	curr;
 
 	if (init_last_meat_time(philo))
+	{
+		sem_post(philo->info->seat);
 		return (1);
-	if (print_status(philo, EATING_MSG))
-		return (1);
+	}
+	print_status(philo, EATING_MSG);
 	while (!usleep(100))
 	{
 		gettimeofday(&curr, NULL);

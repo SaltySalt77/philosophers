@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_status_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:47:21 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 02:36:07 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/06 17:15:56 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ int	print_status(t_philo_lst	*philo, const char	*msg)
 
 	gettimeofday(&time, NULL);
 	usleep(100);
+	if (philo->info->flag == IS_DEAD)
+		exit(IS_DEAD);
 	printf(msg,
 		get_timestamp(philo->info->std_time, &time), philo->name);
 	if (msg[8] == DEAD_MSG[8])
 	{
+		philo->info->flag = IS_DEAD;
 		sem_post(philo->info->seat);
 		exit(IS_DEAD);
 	}

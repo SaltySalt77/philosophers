@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   think_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 19:04:11 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 00:18:13 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/06 17:17:37 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	think(t_philo_lst	*philo)
 {
-	if (print_status(philo, THINKING_MSG))
-		return (1);
+	print_status(philo, THINKING_MSG);
 	usleep(200);
 	return (0);
 }

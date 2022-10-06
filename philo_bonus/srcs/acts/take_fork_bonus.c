@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   take_fork_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 15:46:18 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 02:10:55 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/06 17:04:29 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	take_fork(t_philo_lst	*philo)
 {
-	if (philo->name % 2 == 0)
-		usleep(200);
 	sem_wait(philo->info->lforks);
 	if (print_status(philo, TAKEN_FORK_MSG))
 		return (1);

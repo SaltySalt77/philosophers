@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   go_asleep_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyna <hyna@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 18:42:00 by hyna              #+#    #+#             */
-/*   Updated: 2022/09/29 02:33:33 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/06 17:02:41 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int	go_asleep(t_philo_lst	*philo)
 	struct timeval	curr;
 
 	gettimeofday(&start, NULL);
-	if (print_status(philo, SLEEPING_MSG))
-		return (1);
+	print_status(philo, SLEEPING_MSG);
 	while (1)
 	{
 		gettimeofday(&curr, NULL);

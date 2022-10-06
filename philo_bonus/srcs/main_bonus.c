@@ -6,7 +6,7 @@
 /*   By: hyna <hyna@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:15:30 by hyna              #+#    #+#             */
-/*   Updated: 2022/10/03 18:52:03 by hyna             ###   ########.fr       */
+/*   Updated: 2022/10/06 16:57:50 by hyna             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	validate_arguments(char	**argv)
 		{
 			if (j == 0)
 			{
-				if (ft_isdigit(argv[i][j]) == 0 && argv[i][j] != '+')
+				if (!ft_isdigit(argv[i][j]) && argv[i][j] != '+')
 					return (1);
 				else if (argv[i][j] == '+' && argv[i][j + 1] == 0)
 					return (1);

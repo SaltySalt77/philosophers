@@ -12,7 +12,7 @@
 
 NAME = philo
 CC = cc
-CCFLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=thread
+CCFLAGS = -Wall -Werror -Wextra
 INC_LINK = -I./incs
 SRCS_DIRS = acts\
 			utils\
